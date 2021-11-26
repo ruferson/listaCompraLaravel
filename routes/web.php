@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'getHome']);
 
 Route::get('/login', function () {
     return view('login');
@@ -25,18 +25,7 @@ Route::get('/logout', function () {
     return view('logout');
 });
 
-Route::get('/productos', function () {
-    return view('productos');
-});
-
-Route::get('/productos/show/{id}', function ($id) {
-    return view('show', array('id' => $id));
-});
-
-Route::get('/productos/create', function () {
-    return view('create');
-});
-
-Route::get('/productos/edit/{id}', function ($id) {
-    return view('edit', array('id' => $id));
-});
+Route::get('/productos', [ProductoController::class, 'getIndex']);
+Route::get('/productos/show/{id}', [ProductoController::class, 'getShow']);
+Route::get('/productos/create', [ProductoController::class, 'getCreate']);
+Route::get('/productos/edit/{id}', [ProductoController::class, 'getEdit']);
