@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('nombre')->nullable(); //Esto podrá ser nulleable ya que...
+            $table->string('apellidos')->nullable(); //...en el registro no lo introducimos, lo que causa complicaciones.
         });
     }
 
